@@ -1,3 +1,5 @@
+# This version is used for entering a single strike and dip.
+
 import matplotlib.pyplot as plt
 import numpy as np
 import mplstereonet
