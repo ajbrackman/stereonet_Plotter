@@ -27,11 +27,11 @@ print "Dips: ", dips
 strikesLength = len(strikes)
 dipsLength = len(dips)
 
-if strikesLength != dipsLength
+if strikesLength != dipsLength:
     print "Your data has a non-matching amount of strikes and dips. Please check your \
     data file and try again."
     exit()
-    
+
 #Create N variable for loop
 N = len(strikes)
 
