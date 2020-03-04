@@ -27,24 +27,26 @@ print "Dips: ", dips
 strikesLength = len(strikes)
 dipsLength = len(dips)
 
+print strikesLength, dipsLength
+
 if strikesLength != dipsLength:
     print "Your data has a non-matching amount of strikes and dips. Please check your \
     data file and try again."
     exit()
-
+else:
 #Create N variable for loop
-N = len(strikes)
+    N = len(strikes)
 
 #generate color map for entries
 
-cmap = plt.cm.get_cmap("hsv", N+1)
+    cmap = plt.cm.get_cmap("hsv", N+1)
 
 # Increment from 0 to N through strikes & dips, plotting poles and planes
-i=0
-for i in range(N):
-    ax.plane(strikes[i], dips[i], 'g-', linewidth=2, color=cmap(i))
-    ax.pole(strikes[i], dips[i], 'g^', markersize=12, color=cmap(i))
-    ax.rake(strikes, dips, -25)
+    i=0
+    for i in range(N):
+        ax.plane(strikes[i], dips[i], 'g-', linewidth=2, color=cmap(i))
+        ax.pole(strikes[i], dips[i], 'g^', markersize=12, color=cmap(i))
+        ax.rake(strikes, dips, -25)
 
 #draw grid on stereonet
 ax.grid()
