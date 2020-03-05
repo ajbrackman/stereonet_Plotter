@@ -1,5 +1,4 @@
 # First attempt at creating a stereonet plotting program in python using mplstereonet
-# Testing git integrations
 
 **_Python 2.7 required_**
 
