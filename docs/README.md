@@ -5,7 +5,7 @@
 
 Two versions currently exist:
 ## StereonetPlotter_fileinput.py
-This script takes a CSV (strikesdips.csv) with strikes and dips entered in azimuth format, prints these to the console and plots planes and poles on an equal area stereonet.
+This script takes a CSV (strikesdips.csv) with strikes (in quadrant or azimuth) format and dip values (in degrees), prints these to the console and plots planes and poles on an equal area stereonet.
 
 ## StereonetPlotter_SingleInput.py
-This script prompts the user to enter a strike and dip in aziumuth or quadrant format and then plots the plane and pole on an equal area stereonet using a new color for each entry.
+This script prompts the user to enter a strike (in quadrant or azimuth) and a dip value (in degrees) and then plots the plane and pole on an equal area stereonet using a new color for each entry.
