@@ -11,16 +11,25 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='stereonet')
 
 # Prompt user for data
-strike = input("Enter a strike (in AZ or quadrant [i.e. N30E]) and press ENTER: ")
-dip = input("Enter a dip and direction [i.e. 55SE] and press ENTER: ")
+strike = raw_input("Enter a strike (in AZ or quadrant [i.e. N30E]) and press ENTER: ")
+dip = input("Enter a dip value in degrees and press ENTER: ")
 
-#TODO HERE: PARSE QUADRANT ENTRIES - see
-#https://github.com/joferkington/mplstereonet/blob/master/examples/parsing_example.py
+# Parse strike entry and convert to azimuth as necessary.
+# Print for testing & verification
+azimuth = int(mplstereonet.parse_azimuth(strike))
+print "Azimuth bearing: ", azimuth
 
-# Plot everything
-ax.plane(strike, dip, 'g-', linewidth=2)
-ax.pole(strike, dip, 'g^', markersize=15, marker="x")
-ax.rake(strike, dip, -25)
+# Calculate dip direction per RHR.
+# This is supposedly included with mplstereonet as strike2_dipdirection, but isn't working
+dip_direction = azimuth + 90
+if dip_direction > 360:
+    dip_direction -= 360
+print "Dip ", dip, " degrees, Dip Direction: ", dip_direction, " degrees" # Print dip angle and direction (in azimuth)
+
+# Plot everyt)hing
+ax.plane(azimuth, dip, 'g-', linewidth=2)
+ax.pole(azimuth, dip, 'g^', markersize=15, marker="x")
+ax.rake(azimuth, dip, -25)
 
 ax.grid() # This draws the grid on the stereonet
 
