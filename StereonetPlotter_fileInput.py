@@ -1,4 +1,4 @@
-# This version is used for entering a single strike and dip.
+# This version is used for reading strike and dip data from a file (strikesdips.csv)
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -16,16 +16,17 @@ strikes, dips = [],[]
 # Read strike and dip data from file, skipping headers
 with open('strikesdips.csv','r') as csvfile:
     csvreader = csv.reader(csvfile)
-    headers = csvreader.next() # skips header row
+    headers = csvreader.next() # grabs header row
     for row in csvreader:
         strikes.append(int(row[0]))
         dips.append((int(row[1])))
 
 # Self-explanatory
-print headers
-print "Strikes :", strikes
-print "Dips: ", dips
-print "Total number of measurements: %d"%(len(strikes)) # Print length of strike list
+# Next step here is to recombine and display them neatly in console window
+print "Total number of measurements: %d"%(len(strikes))
+print headers[0], strikes
+print headers[1], dips
+
 # Initialize length variables for next steps.
 # These can be compared for testing purposes
 strikesLength = len(strikes)
@@ -33,20 +34,17 @@ dipsLength = len(dips)
 
 # print strikesLength, dipsLength
 
-# This doesn't work yet because if CSV does not have equal number of strikes & dips, program breaks at csvreader
-#if strikesLength != dipsLength:
-#    print "Your data has a non-matching amount of strikes and dips. Please check your \
-#    data file and try again."
-#    exit()
-#else:
+# PLACEHOLDER FOR LIST LENGTH COMPARISON
 
 #Create N variable for loop
 N = len(strikes)
 
-#generate color map for entries
+# Generate color map for entries
+# See https://matplotlib.org/gallery/color/colormap_reference.html &
+# https://matplotlib.org/tutorials/colors/colormaps.html
 cmap = plt.cm.get_cmap("gist_rainbow", N+1)
 
-# Increment from 0 to N through strikes & dips, plotting poles and planes
+# Increment from 0 to N through strikes & dips, plotting poles, planes, & rakes
 i=0
 for i in range(N):
     ax.plane(strikes[i], dips[i], 'g-', linewidth=2, color=cmap(i))
