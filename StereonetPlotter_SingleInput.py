@@ -14,7 +14,8 @@ ax = fig.add_subplot(111, projection='stereonet')
 strike = input("Enter a strike (in AZ or quadrant [i.e. N30E]) and press ENTER: ")
 dip = input("Enter a dip and direction [i.e. 55SE] and press ENTER: ")
 
-#TODO HERE: PARSE QUADRANT ENTRIES
+#TODO HERE: PARSE QUADRANT ENTRIES - see
+#https://github.com/joferkington/mplstereonet/blob/master/examples/parsing_example.py
 
 # Plot everything
 ax.plane(strike, dip, 'g-', linewidth=2)
