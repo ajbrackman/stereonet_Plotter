@@ -25,11 +25,19 @@ with open('strikesdips.csv','r') as csvfile:
 azimuths = []
 strikesLength = len(strikes)
 
-# Fill the azimuth array by with parse_azimuth function to check for quadrant entries
-i=0
-while i < strikesLength:
+# Generate color map for entries
+# See https://matplotlib.org/gallery/color/colormap_reference.html &
+# https://matplotlib.org/tutorials/colors/colormaps.html
+cmap = plt.cm.get_cmap("rainbow", strikesLength+1)
+
+# Parse entries to azimuth and write to list.
+# Plot each plane and pole on the stereonet
+for i in range(strikesLength):
     azimuths.append(mplstereonet.parse_azimuth(strikes[i]))
-    i += 1
+    ax.plane(azimuths[i], dips[i], 'g-', linewidth=2, color=cmap(i))
+    ax.pole(azimuths[i], dips[i], 'g^', markersize=12, color=cmap(i))
+
+ax.rake(azimuths, dips, -25) # Plot the rakes (needs to be done outside loop)
 
 # Create 2D array of strikes and dips
 strikedip = zip(azimuths,dips)
@@ -37,25 +45,6 @@ strikedip = zip(azimuths,dips)
 # Self-explanatory
 print "Total number of measurements: %d"%(len(strikes))
 print tabulate(strikedip, headers, tablefmt="grid")
-
-# Initialize length variables for next steps.
-# These can be compared for testing purposes
-# dipsLength = len(dips)
-
-# Create N variable for loop
-N = len(strikes)
-
-# Generate color map for entries
-# See https://matplotlib.org/gallery/color/colormap_reference.html &
-# https://matplotlib.org/tutorials/colors/colormaps.html
-cmap = plt.cm.get_cmap("rainbow", N+1)
-
-# Increment from 0 to N through strikes & dips, plotting poles, planes, & rakes
-i=0
-for i in range(N):
-    ax.plane(azimuths[i], dips[i], 'g-', linewidth=2, color=cmap(i))
-    ax.pole(azimuths[i], dips[i], 'g^', markersize=12, color=cmap(i))
-    ax.rake(azimuths, dips, -25)
 
 #draw grid on stereonet
 ax.grid()
