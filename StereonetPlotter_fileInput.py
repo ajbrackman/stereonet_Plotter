@@ -32,8 +32,6 @@ print headers[1], dips
 strikesLength = len(strikes)
 dipsLength = len(dips)
 
-# print strikesLength, dipsLength
-
 # PLACEHOLDER FOR LIST LENGTH COMPARISON
 
 #Create N variable for loop
