@@ -4,32 +4,36 @@ import matplotlib.pyplot as plt
 import numpy as np
 import mplstereonet
 import csv
+import pandas
 
 # Create equal area stereonet
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='stereonet')
 
-# Create column reader and open CSV file. Then initialize empty lists for strikes & dips
-col_reader = csv.reader(open('strikesdips.csv', 'rb'), delimiter=",")
+# Initialize lists for data
 strikes, dips = [],[]
 
-# Append CSV values into variables
-for row in col_reader:
-    strikes.append(int(row[0]))
-    dips.append(int(row[1]))
+# Read strike and dip data from file, skipping headers
+with open('strikesdips.csv','r') as csvfile:
+    csvreader = csv.reader(csvfile)
+    headers = csvreader.next() # skips header row
+    for row in csvreader:
+        strikes.append(int(row[0]))
+        dips.append((int(row[1])))
 
 # Self-explanatory
-print "Strikes: ", strikes
+print headers
+print "Strikes :", strikes
 print "Dips: ", dips
-
+print "Total number of measurements: %d"%(len(strikes)) # Print length of strike list
 # Initialize length variables for next steps.
 # These can be compared for testing purposes
 strikesLength = len(strikes)
 dipsLength = len(dips)
 
-print strikesLength, dipsLength
+# print strikesLength, dipsLength
 
-# This doesn't work yet
+# This doesn't work yet because if CSV does not have equal number of strikes & dips, program breaks at csvreader
 #if strikesLength != dipsLength:
 #    print "Your data has a non-matching amount of strikes and dips. Please check your \
 #    data file and try again."
