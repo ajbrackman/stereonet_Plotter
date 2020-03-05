@@ -44,7 +44,7 @@ dipsLength = len(dips)
 N = len(strikes)
 
 #generate color map for entries
-cmap = plt.cm.get_cmap("hsv", N+1)
+cmap = plt.cm.get_cmap("gist_rainbow", N+1)
 
 # Increment from 0 to N through strikes & dips, plotting poles and planes
 i=0
