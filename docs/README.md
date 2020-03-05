@@ -1,4 +1,5 @@
 # First attempt at creating a stereonet plotting program in python using mplstereonet
+# Testing git integrations
 
 Two versions currently exist:
 ## StereonetPlotter_fileinput.py
