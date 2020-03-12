@@ -3,6 +3,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import mplstereonet
+from six.moves import input as raw_input
 import csv
 from tabulate import tabulate
 
@@ -16,7 +17,7 @@ strikes, dips = [],[]
 # Read strike and dip data from file, skipping headers
 with open('strikesdips.csv','r') as csvfile:
     csvreader = csv.reader(csvfile)
-    headers = csvreader.next() # grabs header row
+    headers = next(csvreader) # grabs header row
     for row in csvreader:
         strikes.append(row[0])
         dips.append((int(row[1])))
@@ -51,7 +52,7 @@ rakes = raw_input("Do you want to plot the rakes? (Y/N)")
 if rakes in ['Y','y','yes']:
     ax.rake(azimuths, dips, -25)
 if rakes in ['N','n','']:
-    print "I won't plot the rakes"
+    print("I won't plot the rakes")
 
 # Gives option to contour poles
 do_contour = raw_input("Do you want to contour the poles? (Y/N)")
@@ -59,14 +60,14 @@ if do_contour in ['Y','y','yes']:
     cax = ax.density_contourf(azimuths,dips, measurement='poles', cbar='rainbow') #cbar arg doesn't seem to do anything
     fig.colorbar(cax)
 if do_contour in ['N','n','no']:
-    print "I won't plot a contour map"
-    
+    print("I won't plot a contour map")
+
 # Create 2D array of strikes and dips
 strikedip = zip(azimuths,dips)
 
 # Self-explanatory
-print "Total number of measurements: %d"%(len(strikes))
-print tabulate(strikedip, headers, tablefmt="grid")
+print("Total number of measurements: %d"%(len(strikes)))
+print(tabulate(strikedip, headers, tablefmt="grid"))
 
 # Draw grid on stereonet and show plot
 ax.grid()
