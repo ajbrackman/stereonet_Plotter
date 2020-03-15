@@ -11,8 +11,8 @@ import csv
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='stereonet')
 
-strike = raw_input("Enter a strike in azimuth (i.e. 212) or quadrant (i.e. N30W) format: ")
-dip = input("Enter a dip value in degrees and press ENTER: ")
+strike = input("Enter a strike in azimuth (i.e. 212) or quadrant (i.e. N30W) format: ")
+dip = int(input("Enter a dip value in degrees and press ENTER: "))
 
 # Parse strike entry and convert to azimuth as necessary.
 # Print for testing & verification
